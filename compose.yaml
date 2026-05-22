@@ -1,0 +1,63 @@
+services:
+  server:
+    build:
+      context: .
+    container_name: laravel_app
+    ports:
+      - "8000:80"
+    depends_on:
+      db:
+        condition: service_healthy
+    environment:
+      - APP_NAME=Laravel
+      - APP_ENV=local
+      - APP_DEBUG=true
+      - APP_KEY=
+      - DB_CONNECTION=pgsql
+      - DB_HOST=db
+      - DB_PORT=5432
+      - DB_DATABASE=laravel
+      - DB_USERNAME=postgres
+      - DB_PASSWORD=password
+    volumes:
+      - ./app:/var/www/html/app
+      - ./resources:/var/www/html/resources
+      - ./routes:/var/www/html/routes
+      - ./config:/var/www/html/config
+      - ./storage:/var/www/html/storage
+      - ./public:/var/www/html/public
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost/"]
+      interval: 10s
+      timeout: 5s
+      retries: 3
+      start_period: 10s
+    networks:
+      - laravel
+
+  db:
+    image: postgres:17-alpine
+    container_name: laravel_db
+    restart: unless-stopped
+    environment:
+      - POSTGRES_DB=laravel
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=password
+    volumes:
+      - db-data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    networks:
+      - laravel
+    expose:
+      - "5432"
+
+volumes:
+  db-data:
+
+networks:
+  laravel:
+    driver: bridge
