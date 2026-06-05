@@ -26,7 +26,7 @@
             <td>
             <a href="{{ url('/category/' . $category->id) }}">{!! $category->name !!}</a>
             </td>
-            <td><a class="btn btn-primary" href="{!! url('/category/' . $category->id . '/edit') !!}">Edit</a></td>
+            <td><a class="btn btn-primary" href="{!! route('category.edit',[$category->id]) !!}">Edit</a></td>
             <td>
                     {{ Html::form('DELETE','category/'. $category->id)->open()}}
                         <button onclick="return confirmAction()" class="btn btn-danger delete">Delete</button>

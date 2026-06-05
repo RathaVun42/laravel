@@ -125,7 +125,7 @@
                     </ol>
                     <div class="card mb-4">
                         <div class="card-body">
-                            @yield("content")
+                            @yield("content")  //
                         </div>
                     </div>
                     <div style="height: 100vh"></div>

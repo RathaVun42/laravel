@@ -66,6 +66,7 @@ we can only create Laravel project on terminal (command) in specific folder that
 
 	Route::get('/user/{id}', [UserController::class, 'show']);
 *--> UserController is a class, show is a public function inside UserController
+*--> show here is a function inside controller class(index, edit, update, destroy, show). Then the action is now depending on these 5 function of controller.
 
 --> but we need to create a class controller first: cmd php artisan make:Controller controllerName. This will create a subclass of Controller inside app/Http/Controllers/controllerName.php
 
@@ -81,3 +82,12 @@ we can only create Laravel project on terminal (command) in specific folder that
 
 --> to creat model: php artisan make:model ModelName  --resource (optional: it automatically create some useful function);
 --> to create controller: php artisan make:controller ControllerName
+	-------------------------------------29/05/2026-----------------------------------------
+-->url('/routeURL/param')
+-->route('RouteName', [param])
+We can use these two method to point into a specific view.
+
+-----------------------------05/06/2026----------------------------
+php artisan make:model Product --migration  // this will generate both model and migration name Product.
+
+php artisan make:controller ProductController --resource // this will create controller with its neccessary function
