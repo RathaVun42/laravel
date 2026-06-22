@@ -26,7 +26,6 @@
                     <th></th>
                     <th></th>
                 </tr>
-                
             </thead>
             <tbody>
                 @foreach ($products as $product)

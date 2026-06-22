@@ -2,11 +2,13 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\FrontedEndControllerr;
 use App\Http\Controllers\ProductController;
 
-Route::get('/', function () {
-    return view('welcome');
-});
+
+// Route::get('/', function () {
+//     return view('welcome');
+// });
 Route::get('/category', [CategoryController::class, 'index'])->name("category.list");
 Route::get('/category/create', [CategoryController::class, 'create'])->name("category.create");
 Route::post('/category', [CategoryController::class, 'store'])->name("category.store");
@@ -23,3 +25,7 @@ Route::get('/product/{product}',[ProductController::class,'show'])->name('produc
 Route::delete('/product/{product}',[ProductController::class,'destroy'])->name('product.destroy');
 Route::get('/product/{product}/edit',[ProductController::class,'edit'])->name('product.edit');
 Route::put('/product/{product}',[ProductController::class,'update'])->name('product.update');
+
+Route::get('/', [FrontedEndControllerr::class, 'index']);
+Route::get('/list',[FrontedEndControllerr::class,'list']);
+Route::get('/show/{id}',[FrontedEndControllerr::class,'show']);

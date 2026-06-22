@@ -77,17 +77,22 @@ we can only create Laravel project on terminal (command) in specific folder that
 	});
 
 --> we also can built api with laravel: first we need to install api in terminal: php artisan install:api. After installed, it will generate an api.php file inside folder routes.
+
 	-------------------------------------22/05/2026----------------------------------------
+
 --> to connect database with migration: in file .env fill infor about our database, then run cmd php arisan migrate. So, our migration is now sync to data base.
 
 --> to creat model: php artisan make:model ModelName  --resource (optional: it automatically create some useful function);
 --> to create controller: php artisan make:controller ControllerName
+
 	-------------------------------------29/05/2026-----------------------------------------
+
 -->url('/routeURL/param')
 -->route('RouteName', [param])
 We can use these two method to point into a specific view.
 
------------------------------05/06/2026----------------------------
+	-----------------------------05/06/2026----------------------------
+
 php artisan make:model Product --migration  // this will generate both model and migration name Product.
 
 php artisan make:controller ProductController --resource // this will create controller with its neccessary function
