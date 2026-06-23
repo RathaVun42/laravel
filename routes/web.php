@@ -29,3 +29,4 @@ Route::put('/product/{product}',[ProductController::class,'update'])->name('prod
 Route::get('/', [FrontedEndControllerr::class, 'index']);
 Route::get('/list',[FrontedEndControllerr::class,'list']);
 Route::get('/show/{id}',[FrontedEndControllerr::class,'show']);
+

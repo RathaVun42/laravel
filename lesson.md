@@ -96,3 +96,7 @@ We can use these two method to point into a specific view.
 php artisan make:model Product --migration  // this will generate both model and migration name Product.
 
 php artisan make:controller ProductController --resource // this will create controller with its neccessary function
+
+php artisan make:model Post -m // this will create both model Post and migration file posts
+
+php artisan make:controller Api/PostController --api // this will create controller of api and store it to Api subfolder in controller.
