@@ -2,9 +2,10 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\DomainController;
 use App\Http\Controllers\FrontedEndControllerr;
 use App\Http\Controllers\ProductController;
-
+use App\Models\Domain;
 
 // Route::get('/', function () {
 //     return view('welcome');
@@ -30,3 +31,10 @@ Route::get('/', [FrontedEndControllerr::class, 'index']);
 Route::get('/list',[FrontedEndControllerr::class,'list']);
 Route::get('/show/{id}',[FrontedEndControllerr::class,'show']);
 
+Route::get('/domain', [DomainController::class, 'index'])->name('domain.index');
+Route::get('/domain/create',[DomainController::class,'create'])->name('domain.create');
+Route::post('/domain',[DomainController::class,'store'])->name('domain.store');
+Route::get('/domain/{domain}',[DomainController::class,'show'])->name('domain.show');
+Route::delete('/domain/{domain}',[DomainController::class,'destroy'])->name('domain.destroy');
+Route::get('/domain/{domain}/edit',[DomainController::class,'edit'])->name('domain.edit');
+Route::put('/domain/{domain}',[DomainController::class,'update'])->name('domain.update');

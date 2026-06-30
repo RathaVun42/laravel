@@ -117,15 +117,10 @@
         </div>
         <div id="layoutSidenav_content">
             <main>
-                <div class="container-fluid px-4">
-                    
-                    <ol class="breadcrumb mb-4">
-                        <li class="breadcrumb-item"><a href="index.html">Dashboard</a></li>
-                        <li class="breadcrumb-item active">Static Navigation</li>
-                    </ol>
+                <div class="container-fluid px-4 mt-5">
                     <div class="card mb-4">
                         <div class="card-body">
-                            @yield("content")  //
+                            @yield("content") 
                         </div>
                     </div>
                     <div style="height: 100vh"></div>
