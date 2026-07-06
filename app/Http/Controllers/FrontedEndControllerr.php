@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Category;
 use App\Models\Product;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class FrontedEndControllerr extends Controller
 {
@@ -20,7 +21,7 @@ class FrontedEndControllerr extends Controller
     public function list()
     {
         $categories = Category::all();
-        $products = Product::orderBy('created_at', 'DESC')->paginate(3);
+        $products = Product::orderBy('created_at', 'DESC')->paginate(5);
         return view('frontend.list')->with('products', $products)->with('categories', $categories);
     }
 
@@ -48,7 +49,29 @@ class FrontedEndControllerr extends Controller
         $categories = Category::all();
         return view('frontend.show')->with('product', Product::find($id))->with('categories',$categories);
     }
-
+    public function getBySearch(Request $request)
+    {
+        $keyword = !empty($request->input('keyword')) ? $request->input('keyword') : "";
+        if ($keyword != "") {
+            return view('frontend.search')
+                ->with('products', Product::where('name', 'LIKE', '%' . $keyword . '%')->paginate(5))
+                ->with('keyword', $keyword);
+        } else {
+            return view('frontend.search')
+                ->with('products', Product::paginate(5))
+                ->with('keyword', $keyword);
+        }
+    }
+    public function getByCategory($id=0) {
+        $categories = Category::all();
+        if (!$id) {
+            $id = $categories->first()->id;
+        }
+        $products = DB::table('products')->where('category_id', $id)->paginate(3);
+        return view('frontend.category')
+            ->with('products', $products)
+            ->with('categories', $categories);
+    }
     /**
      * Show the form for editing the specified resource.
      */

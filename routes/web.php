@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AuthController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\DomainController;
@@ -30,6 +31,8 @@ Route::put('/product/{product}',[ProductController::class,'update'])->name('prod
 Route::get('/', [FrontedEndControllerr::class, 'index']);
 Route::get('/list',[FrontedEndControllerr::class,'list']);
 Route::get('/show/{id}',[FrontedEndControllerr::class,'show']);
+Route::get('/search', [FrontedEndControllerr::class,'getBySearch']);
+Route::get('/frontend/{category?}', [FrontedEndControllerr::class,'getByCategory']);
 
 Route::get('/domain', [DomainController::class, 'index'])->name('domain.index');
 Route::get('/domain/create',[DomainController::class,'create'])->name('domain.create');
@@ -38,3 +41,11 @@ Route::get('/domain/{domain}',[DomainController::class,'show'])->name('domain.sh
 Route::delete('/domain/{domain}',[DomainController::class,'destroy'])->name('domain.destroy');
 Route::get('/domain/{domain}/edit',[DomainController::class,'edit'])->name('domain.edit');
 Route::put('/domain/{domain}',[DomainController::class,'update'])->name('domain.update');
+
+// login and register
+Route::get('/login', [AuthController::class, 'index'])->name('login.page');
+Route::post('/post-login', [AuthController::class, 'postLogin'])->name('login.post');
+Route::get('/registration', [AuthController::class, 'registration'])->name('register');
+Route::post('/post-registration', [AuthController::class, 'postRegistration'])->name('register.post');
+Route::get('/dashboard', [AuthController::class, 'dashboard']);
+Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
