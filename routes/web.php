@@ -3,9 +3,11 @@
 use App\Http\Controllers\AuthController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\ChangePasswordController;
 use App\Http\Controllers\DomainController;
 use App\Http\Controllers\FrontedEndControllerr;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\UpdateProfileController;
 use App\Models\Domain;
 
 // Route::get('/', function () {
@@ -48,4 +50,12 @@ Route::post('/post-login', [AuthController::class, 'postLogin'])->name('login.po
 Route::get('/registration', [AuthController::class, 'registration'])->name('register');
 Route::post('/post-registration', [AuthController::class, 'postRegistration'])->name('register.post');
 Route::get('/dashboard', [AuthController::class, 'dashboard']);
-Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
+Route::get('/logout', [AuthController::class, 'logout'])->name('logout.page');
+
+//update password
+Route::get('/change-password', [ChangePasswordController::class, 'index'])->name('form.password');
+Route::post('/change-password', [ChangePasswordController::class, 'store'])->name('change.password');
+
+// update profile
+Route::get('/update-profile/{user}',  [UpdateProfileController::class, 'editProfile'])->name('profile.edit');
+Route::patch('/update-profile/{user}',  [UpdateProfileController::class, 'updateProfile'])->name('profile.update');
